@@ -1,0 +1,59 @@
+<!-- <?php -->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="src/styles.css">
+    <title>API amoCRM</title>
+</head>
+<body>
+    <script>
+        let timeSpentOnPage = 0;
+
+        // Увеличиваем счетчик времени каждые 1000 мс (1 секунда)
+        const timer = setInterval(() => {
+            timeSpentOnPage++;
+        }, 1000);
+
+        // Функция, которая срабатывает при отправке формы
+        function handleFormSubmit() {
+            clearInterval(timer);
+            const userSpentEnoughTime = timeSpentOnPage > 30 ? true : false;
+            console.log(userSpentEnoughTime);
+            // Создаем скрытое поле для передачи значения в форму
+            const timeInput = document.createElement('input');
+            timeInput.type = 'hidden';
+            timeInput.name = 'status';
+            timeInput.value = userSpentEnoughTime;
+            
+            document.querySelector('form').appendChild(timeInput);
+        }
+    </script>
+    <header>
+    </header>
+    <main>
+        <form class="amoCRMForm" onsubmit="handleFormSubmit()">
+            <div class="form__input">
+                <label class="form__input_label" for="amoName">Имя</label><input class="form__input_input" type="text" id="amoName" name="name" value="" placehol   der="" pattern="[A-Za-zА-Яа-яЁё\s]+" required>
+            </div>
+            <div class="form__input">
+                <label class="form__input_label" for="amoEmail">Email</label><input class="form__input_input" type="email" maxlength="64" id="amoEmail" name="email" value="" placeholder="" required>
+            </div>
+            <div class="form__input">
+                <label class="form__input_label" for="amoPhone">Телефон</label><input class="form__input_input" type="tel" maxlength="16" id="amoPhone" name="phone"  value="" placeholder="" required>
+            </div>
+            <div class="form__input">
+                <label class="form__input_label" for="amoPrice">Цена</label><input class="form__input_input" type="number" min="0" max="9999999" id="amoPrice" name="price" value="" placeholder="" required>
+            </div>
+            <div class="form__button">
+                <input class="form__button_button" type="submit" value="Отправить">
+            </div>
+        </form>
+    </main>
+    <footer>
+    </footer>
+    <script src="src/script.js"></script>
+</body>
+</html>
